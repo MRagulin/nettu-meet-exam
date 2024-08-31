@@ -23,7 +23,8 @@ pipeline {
                 ls -la
                 '''
                 archiveArtifacts artifacts: 'semgrep-result.json', allowEmptyArchive: true
-                } */
+                 */
+			}
         }
 
         stage('Zap-Scan') {
@@ -33,8 +34,6 @@ pipeline {
             }
         }
         
-        
-
         
     }
 }
