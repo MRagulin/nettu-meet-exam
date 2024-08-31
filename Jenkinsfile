@@ -49,21 +49,20 @@ pipeline {
                     agent { label 'dind' }
                     steps {
                         sh '''
-                            mkdir report/
 			    ls -la /etc/docker/
        			    sudo chmod a+w /etc/docker/daemon.json 2>/dev/null
        			    sudo echo '{' >> /etc/docker/daemon.json
   			    sudo echo '"registry-mirrors": [' >> /etc/docker/daemon.json
      			    sudo echo '"https://hub-mirror.c.163.com",' >> /etc/docker/daemon.json
     			    sudo echo '"https://mirror.baidubce.com"  ]}"' >> /etc/docker/daemon.json
-	   		    sudo /etc/init.d/docker restart
-       			    cat /etc/docker/daemon.json	2>/dev/null		
-                            docker run aquasec/trivy --format json --output report/trivyout.json repo https://github.com/kserg13/nettu-meet-ks
+	   		    sudo /etc/init.d/docker restart 2>/dev/null
+	  		    ls -la
+                            docker run aquasec/trivy --format json --output trivy-report.json repo https://github.com/MRagulin/nettu-meet-exam
                             pwd
                             ls -l
                             find . -name "*.json"
                             '''
-                      //  archiveArtifacts allowEmptyArchive: true, artifacts: 'report/trivyout.json'
+                      //  archiveArtifacts allowEmptyArchive: true, artifacts: 'trivy-report.json'
                     }
                 }
 
