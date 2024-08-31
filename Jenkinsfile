@@ -38,7 +38,7 @@ pipeline {
                         pwd
                         zap/ZAP_D-2024-08-27/zap.sh -nostdout -cmd -quickurl https://s410-exam.cyber-ed.space:8084 -quickout ~/zap-result.json 
  		'''
-		archiveArtifacts artifacts: '~/zap-result.json', allowEmptyArchive: true
+		archiveArtifacts artifacts: '/root/zap-result.json', allowEmptyArchive: true
             }
         }
         
