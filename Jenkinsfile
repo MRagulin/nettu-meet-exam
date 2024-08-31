@@ -36,16 +36,9 @@ pipeline {
                         wget https://github.com/zaproxy/zaproxy/releases/download/w2024-08-27/ZAP_WEEKLY_D-2024-08-27.zip
                         unzip ZAP_WEEKLY_D-2024-08-27.zip -d zap
                         pwd
-                        zap/ZAP_D-2024-08-27/zap.sh -nostdout -cmd -quickurl https://s410-exam.cyber-ed.space:8084 -quickout ${pwd}/zap-result.json 
-                        pwd
-                        ls -la $(pwd)/zap/ZAP_D-2024-08-27/
-			ls -la
-   			ls -la /
-      			ls -la zap
-   
-                        find . -name "*.json"
-		'''
-		archiveArtifacts artifacts: 'zap-result.json', allowEmptyArchive: true
+                        zap/ZAP_D-2024-08-27/zap.sh -nostdout -cmd -quickurl https://s410-exam.cyber-ed.space:8084 -quickout ~/zap-result.json 
+ 		'''
+		archiveArtifacts artifacts: '~/zap-result.json', allowEmptyArchive: true
             }
         }
         
