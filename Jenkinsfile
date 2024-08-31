@@ -14,6 +14,7 @@ pipeline {
         stage('Semgrep-Scan') {
             agent { label 'alpine' } 
             steps {
+				sh 'echo "SAST as semgrep"'
          /*       sh '''
                 apk add --no-cache python3 py3-pip py3-virtualenv
                 python3 -m venv semgrepenv
@@ -34,6 +35,8 @@ pipeline {
             }
         }
         
+		
+
         
     }
 }
