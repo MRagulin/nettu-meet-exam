@@ -31,7 +31,8 @@ pipeline {
         stage('Zap-Scan') {
             agent {label 'dind'}
             steps {
-                sh 'docker pull owasp/zap2docker-stable'
+                sh 'docker run -v \$(pwd)/:/zap/wrk/:rw -t zaproxy/zap-stable zap-baseline.py -I -t https://s410-exam.cyber-ed.space:8084 -J zap-result.json'
+		archiveArtifacts artifacts: 'zap-result.json', allowEmptyArchive: true
             }
         }
         
