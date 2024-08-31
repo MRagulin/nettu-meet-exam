@@ -11,6 +11,9 @@ pipeline {
         }
 
         stage('Semgrep-Scan') {
+            agent { 
+                label 'alpine' 
+            } 
             steps {
                 sh 'pip3 install semgrep'
             }
