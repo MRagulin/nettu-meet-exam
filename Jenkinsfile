@@ -11,9 +11,9 @@ pipeline {
         }
 
         stage('Semgrep-Scan') {
-            agent { 
-                label 'alpine' 
-            } 
+             agent {
+                 docker { image 'python:3'}
+                }
             steps {
                 sh 'pip3 install semgrep'
             }
