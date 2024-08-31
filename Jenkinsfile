@@ -15,7 +15,7 @@ pipeline {
             steps {
                 sh '''
                 apk add --no-cache python3 py3-pip
-                pip install semgrep
+                pip --break-system-packages install semgrep
                 semgrep --config=auto . --json > semgrep-result.json
                 ls -la
                 '''
