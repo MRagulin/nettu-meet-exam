@@ -58,7 +58,7 @@ pipeline {
 	   		    sudo /etc/init.d/docker restart 2>/dev/null
 	  		    ls -la
 	 		    mkdir ./result		
-                            docker run -v ./report:/report aquasec/trivy repo https://github.com/Bugamed/nettu-meet-exam -f json -o /report/trivy.json repo https://github.com/MRagulin/nettu-meet-exam
+                            docker run -v ./report:/report aquasec/trivy repo https://github.com/MRagulin/nettu-meet-exam -f json -o /report/trivy.json 
                             pwd
                             ls -l ./report
 			    ls -la
