@@ -1,6 +1,6 @@
 pipeline {
     agent any
-
+    
     stages {
         stage('Checkout') {
             steps {
@@ -11,11 +11,11 @@ pipeline {
         }
 
         stage('Semgrep-Scan') {
-             agent {
-                 docker { image 'python:3'}
-                }
+            agent { label 'alpine' } 
             steps {
-                sh 'pip3 install semgrep'
+                sh '''
+                pip3 install semgrep
+                '''
             }
         }
     }
