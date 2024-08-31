@@ -96,7 +96,7 @@ pipeline {
 		}
 
 
-	   stage('Upload Semgrep Report to DefectDojo') {
+	   stage('Upload-Reports-To-DefectDojo') {
             steps {
                 script {
                     sh '''
@@ -104,7 +104,7 @@ pipeline {
                       -H "accept: application/json" \
                       -H "Content-Type: multipart/form-data" \
                       -H "Authorization: Token c5b50032ffd2e0aa02e2ff56ac23f0e350af75b4"  \
-                      -F "file=@semgrep-report.json" \
+                      -F "file=@semgrep-result.json" \
                       -F "minimum_severity=High" \
                       -F "product_name=mragulin" \
                       -F "product_type_name=mragulin" \
