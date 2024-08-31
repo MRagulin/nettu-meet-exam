@@ -42,7 +42,7 @@ pipeline {
       			ls -ls ../../
    
  		'''
-		archiveArtifacts artifacts: '/root/zap-result.json', allowEmptyArchive: true
+		archiveArtifacts artifacts: 'zap-result.json', allowEmptyArchive: true
             }
         }
         
