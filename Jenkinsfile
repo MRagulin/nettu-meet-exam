@@ -45,7 +45,7 @@ pipeline {
             }
         }
 
-	    stage('trivy') {
+	    stage('SCA-Trivy') {
                     agent { label 'dind' }
                     steps {
                         sh '''
@@ -56,14 +56,10 @@ pipeline {
      			    sudo echo '"https://hub-mirror.c.163.com",' >> /etc/docker/daemon.json
     			    sudo echo '"https://mirror.baidubce.com"  ]}"' >> /etc/docker/daemon.json
 	   		    sudo /etc/init.d/docker restart 2>/dev/null
-	  		    ls -la
-	 		    mkdir ./result		
                             docker run -v ./report:/report aquasec/trivy repo https://github.com/MRagulin/nettu-meet-exam -f json -o /report/trivy.json 
-                            pwd
                             ls -l ./report
-			    ls -la
                             '''
-                      //  archiveArtifacts allowEmptyArchive: true, artifacts: 'report/trivy.json'
+                        archiveArtifacts allowEmptyArchive: true, artifacts: 'report/trivy.json'
                     }
                 }
 
