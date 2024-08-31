@@ -5,6 +5,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 sh '''
+                echo "Checking everythings - ok --> Start exam"
                 ls -lah
                 '''
             }
@@ -13,7 +14,7 @@ pipeline {
         stage('Semgrep-Scan') {
             agent { label 'alpine' } 
             steps {
-                sh '''
+         /*       sh '''
                 apk add --no-cache python3 py3-pip py3-virtualenv
                 python3 -m venv semgrepenv
                 . semgrepenv/bin/activate
@@ -22,7 +23,18 @@ pipeline {
                 ls -la
                 '''
                 archiveArtifacts artifacts: 'semgrep-result.json', allowEmptyArchive: true
+                } */
+        }
+
+        stage('Zap-Scan') {
+            agent any
+            steps {
+                sh 'docker pull owasp/zap2docker-stable'
             }
         }
+
+        
+
+        
     }
 }
