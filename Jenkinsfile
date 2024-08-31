@@ -10,10 +10,9 @@ pipeline {
 
         stage('Semgrep-Scan') {
             steps {
-            				sh '''docker pull returntocorp/semgrep && \ 
-                docker run \
-                -v "$(pwd):$(pwd)" --workdir $(pwd) \
-              returntocorp/semgrep semgrep ci '''
+            sh '''
+               docker run --rm -v "${PWD}:/src" returntocorp/semgrep semgrep --config=auto .
+               '''
             }
         }
     }
