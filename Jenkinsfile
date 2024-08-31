@@ -36,7 +36,7 @@ pipeline {
                         wget https://github.com/zaproxy/zaproxy/releases/download/w2024-08-27/ZAP_WEEKLY_D-2024-08-27.zip
                         unzip ZAP_WEEKLY_D-2024-08-27.zip -d zap
                         pwd
-                        zap/ZAP_D-2024-08-27/zap.sh -cmd -quickurl https://s410-exam.cyber-ed.space:8084 -J zap-result.json 
+                        zap/ZAP_D-2024-08-27/zap.sh -nostdout -cmd -quickurl https://s410-exam.cyber-ed.space:8084 -quickout zap-result.json 
                         pwd
                         ls -l
                         find . -name "*.json"
