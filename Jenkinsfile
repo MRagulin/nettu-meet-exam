@@ -100,6 +100,7 @@ pipeline {
             steps {
                 script {
                     sh '''
+		    ls -la
                     curl -k -X 'POST' 'https://s410-exam.cyber-ed.space:8083/api/v2/import-scan/' \
                       -H "accept: application/json" \
                       -H "Content-Type: multipart/form-data" \
