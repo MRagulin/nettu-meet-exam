@@ -4,7 +4,9 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/MRagulin/nettu-meet-exam.git'
+                sh '''
+                ls -lah
+                '''
             }
         }
 
