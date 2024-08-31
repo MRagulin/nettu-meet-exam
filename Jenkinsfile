@@ -14,7 +14,10 @@ pipeline {
             agent { label 'alpine' } 
             steps {
                 sh '''
-                pip3 install semgrep
+                apk add --no-cache python3 py3-pip
+                pip install semgrep
+                semgrep --config=auto . --json > semgrep-result.json
+                ls -la
                 '''
             }
         }
