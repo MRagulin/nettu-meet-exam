@@ -56,7 +56,7 @@ pipeline {
   			    sudo echo '"registry-mirrors": [' >> /etc/docker/daemon.json
      			    sudo echo '"https://hub-mirror.c.163.com",' >> /etc/docker/daemon.json
     			    sudo echo '"https://mirror.baidubce.com"  ]}"' >> /etc/docker/daemon.json
-	   		    sudo rc-service docker restart 
+	   		    sudo /etc/init.d/docker restart
        			    cat /etc/docker/daemon.json	2>/dev/null		
                             docker run aquasec/trivy --format json --output report/trivyout.json repo https://github.com/kserg13/nettu-meet-ks
                             pwd
