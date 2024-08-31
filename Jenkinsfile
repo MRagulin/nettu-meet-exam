@@ -57,10 +57,11 @@ pipeline {
     			    sudo echo '"https://mirror.baidubce.com"  ]}"' >> /etc/docker/daemon.json
 	   		    sudo /etc/init.d/docker restart 2>/dev/null
 	  		    ls -la
-	 		    mkdir /result		
+	 		    mkdir ./result		
                             docker run -v ./report:/report aquasec/trivy repo https://github.com/Bugamed/nettu-meet-exam -f json -o /report/trivy.json repo https://github.com/MRagulin/nettu-meet-exam
                             pwd
                             ls -l ./report
+			    ls -la
                             '''
                       //  archiveArtifacts allowEmptyArchive: true, artifacts: 'report/trivy.json'
                     }
