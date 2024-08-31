@@ -29,9 +29,18 @@ pipeline {
         }
 
         stage('Zap-Scan') {
-            agent {label 'dind'}
+            agent {label 'alpine'}
             steps {
-                sh 'docker run -v \$(pwd)/:/zap/wrk/:rw -t zaproxy/zap-stable zap-baseline.py -I -t https://s410-exam.cyber-ed.space:8084 -J zap-result.json'
+                sh '''
+			apk add --no-cache openjdk11-jre-headless wget unzip
+                        wget https://github.com/zaproxy/zaproxy/releases/download/w2024-08-27/ZAP_WEEKLY_D-2024-08-27.zip
+                        unzip ZAP_WEEKLY_D-2024-08-27.zip -d zap
+                        pwd
+                        zap/ZAP_D-2024-08-27/zap.sh -cmd -quickurl https://s410-exam.cyber-ed.space:8084 -J zap-result.json 
+                        pwd
+                        ls -l
+                        find . -name "*.json"
+		'''
 		archiveArtifacts artifacts: 'zap-result.json', allowEmptyArchive: true
             }
         }
