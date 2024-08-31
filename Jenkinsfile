@@ -29,7 +29,7 @@ pipeline {
         }
 
         stage('Zap-Scan') {
-            agent any
+            agent {label 'dind'}
             steps {
                 sh 'docker pull owasp/zap2docker-stable'
             }
