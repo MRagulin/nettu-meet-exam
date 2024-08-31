@@ -50,6 +50,8 @@ pipeline {
                     steps {
                         sh '''
                             mkdir report/
+			    ls -la /etc/docker/
+       			    cat /etc/docker/daemon.json	2>/dev/null		
                             docker run aquasec/trivy --format json --output report/trivyout.json repo https://github.com/kserg13/nettu-meet-ks
                             pwd
                             ls -l
